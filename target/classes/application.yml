@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: sistema-notificacoes-multicanal
+  datasource:
+    url: jdbc:h2:mem:notificacoesdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+mailtrap:
+  api-token: ${MAILTRAP_API_TOKEN:}
+  from-email: ${MAILTRAP_FROM_EMAIL:hello@demomailtrap.co}
+  from-name: ${MAILTRAP_FROM_NAME:Mailtrap Test}
+
+twilio:
+  account-sid: ${TWILIO_ACCOUNT_SID:}
+  auth-token: ${TWILIO_AUTH_TOKEN:}
+  from-sms-number: ${TWILIO_FROM_SMS_NUMBER:}
+  from-whatsapp-number: ${TWILIO_FROM_WHATSAPP_NUMBER:+14155238886}
+  whatsapp-content-sid: ${TWILIO_WHATSAPP_CONTENT_SID:}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
